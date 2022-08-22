@@ -34,12 +34,15 @@ public class Gates : MonoBehaviour
         if (Hp <= 0)
         {
             transform.GetChild(0).gameObject.SetActive(false);
-            transform.GetChild(1).gameObject.SetActive(false);
-
+            transform.GetChild(1).gameObject.SetActive(true);
+            car.speed = 0;
+            car.speedBoost = 0;
+            car.goToFinish = true;
         }
         else
         {
             transform.GetChild(1).gameObject.SetActive(false);
+
         }
     }
 }
