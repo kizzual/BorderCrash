@@ -24,7 +24,7 @@ public class Barell : MonoBehaviour
                 {
                     if (item.TryGetComponent(out Rigidbody rb))
                     {
-                        rb.AddExplosionForce(expForce, transform.position, 0, 0.1f, ForceMode.Impulse);
+                        rb.AddExplosionForce(expForce, transform.position, expRadius, 0, ForceMode.Impulse);
                         if (item.TryGetComponent(out Car car))
                         {
                             car.speed -= car.speed * speedDecrease / 10;
@@ -53,7 +53,7 @@ public class Barell : MonoBehaviour
         {
             expTimer = 0;
             startTimer = true;
-            timeToExp = Random.Range(0,2);
+            timeToExp = 0;
         }
     }
 }

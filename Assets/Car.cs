@@ -22,7 +22,7 @@ public class Car : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        rb.mass = mass/100;
+        rb.mass = mass / 100;
         touchController = GetComponent<TouchController>();
     }
     private void Update()
@@ -47,9 +47,9 @@ public class Car : MonoBehaviour
 
         if (rotateDirection != 0 && speed > 0)
         {
-            speed -= turnBraking*Time.fixedDeltaTime;
+            speed -= turnBraking * Time.fixedDeltaTime;
         }
-        if (touchController.moveDirection != 0 && speed >0)
+        if (touchController.moveDirection != 0 && speed > 0)
         {
             speed -= turnBraking * Time.fixedDeltaTime;
         }
@@ -64,17 +64,24 @@ public class Car : MonoBehaviour
         }
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
         if (Input.GetKey(KeyCode.Space) && speed > 0)
-        {           
-            speed -= speed*0.1f;
+        {
+            speed -= speed * 0.1f;
         }
     }
     private void Death()
     {
         if (isCarDestroyed)
         {
+            isCarDestroyed = false;
+            speed = 0;
+            speedBoost = 0;
             foreach (ParticleSystem particle in particleDeath)
             {
                 particle.Play();
+            }
+            foreach (ParticleSystem particle in particleDust)
+            {
+                particle.Stop();
             }
         }
     }
@@ -85,10 +92,12 @@ public class Car : MonoBehaviour
         {
             Debug.Log("finish");
             transform.LookAt(finish);
-            transform.position = Vector3.MoveTowards(transform.position, finish, 40 * Time.fixedDeltaTime);
+            //transform.position = Vector3.MoveTowards(transform.position, finish, 40 * Time.fixedDeltaTime);
             float distance = Vector3.Distance(finish, transform.position);
-            if (distance < 0.3f)
+            if (distance < 1)
             {
+                speed = 0;
+                speedBoost = 0;
                 goToFinish = false;
                 foreach (ParticleSystem particle in particleDust)
                 {

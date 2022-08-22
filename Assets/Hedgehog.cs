@@ -5,12 +5,17 @@ using UnityEngine;
 public class Hedgehog : MonoBehaviour
 {
     [Range(0,10)] public int degreeOfStrength;
-    public float damage;
+    private float damage;
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.transform.TryGetComponent(out Car car))
         {
+            damage = degreeOfStrength * 100;
             car.HP -= damage;
+            if (car.HP <= 0)
+            {
+                car.isCarDestroyed = true;
+            }
             if (degreeOfStrength < 10)
             {
                 car.speed -= car.speed * degreeOfStrength / 10;
@@ -18,9 +23,6 @@ public class Hedgehog : MonoBehaviour
             }
             else
             {
-                Debug.Log("Game Over");
-                car.speed = 0;
-                car.speedBoost = 0;
                 car.isCarDestroyed = true;
             }
         }

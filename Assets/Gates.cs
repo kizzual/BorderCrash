@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Gates : MonoBehaviour
 {
-    [SerializeField] private float Hp;
+    public float Hp;
     /*private void OnCollisionEnter(Collision collision)
     {
         if (collision.transform.TryGetComponent(out Car car))
@@ -35,8 +35,8 @@ public class Gates : MonoBehaviour
         {
             transform.GetChild(0).gameObject.SetActive(false);
             transform.GetChild(1).gameObject.SetActive(true);
-            car.speed = 0;
-            car.speedBoost = 0;
+            /*car.speed = 0;
+            car.speedBoost = 0;*/
             car.goToFinish = true;
         }
         else
