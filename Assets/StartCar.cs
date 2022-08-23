@@ -28,7 +28,7 @@ public class StartCar : MonoBehaviour, IPointerClickHandler
         }
         isStarting = true;
     }
-    private void Update()
+    /*private void Update()
     {
         if (isStarting)
         {
@@ -40,7 +40,7 @@ public class StartCar : MonoBehaviour, IPointerClickHandler
             //Debug.Log(carScript.isCarDestroyed);
             //carScript.isCarDestroyed = false;
             virtualCamera.Follow = startPoint;
-        }*/
+        }
         
-    }
+    }*/
 }

@@ -22,6 +22,7 @@ public class Car : MonoBehaviour
     public bool goToFinish;
     public CinemachineVirtualCamera virtualCamera;
     public Transform startPoint;
+    public bool isStarting;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -36,8 +37,11 @@ public class Car : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        Moving();
-        Rotation();
+        if(isStarting)
+        {
+            Moving();
+            Rotation();
+        }       
         GoToFinish();
     }
     private void Rotation()
@@ -112,7 +116,7 @@ public class Car : MonoBehaviour
     }
     IEnumerator en()
     {
-        yield return new WaitForSeconds(1.8f);
+        yield return new WaitForSeconds(1.3f);
         virtualCamera.Follow = startPoint;
         gameObject.SetActive(false);
     }
