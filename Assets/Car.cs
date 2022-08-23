@@ -36,8 +36,11 @@ public class Car : MonoBehaviour
         rotateDirection = Input.GetAxisRaw("Horizontal");
         Death();
         GoToFinish();
-        float targetFOV = 40 + speed * 0.3f;
-        virtualCamera.m_Lens.FieldOfView = Mathf.SmoothDamp(virtualCamera.m_Lens.FieldOfView, targetFOV, ref velocity, 1f);
+        if (isStarting)
+        {
+            float targetFOV = 40 + speed * 0.8f;
+            virtualCamera.m_Lens.FieldOfView = Mathf.SmoothDamp(virtualCamera.m_Lens.FieldOfView, targetFOV, ref velocity, 1f);
+        }
     }
     private void FixedUpdate()
     {
@@ -100,10 +103,10 @@ public class Car : MonoBehaviour
     }
     private void GoToFinish()
     {
-        Vector3 finish = new Vector3(0, 0, 500);
+        Vector3 finish = new Vector3(0, 0, 462);
         if (goToFinish)
         {
-            canvas.gameObject.SetActive(true);
+            //canvas.gameObject.SetActive(true);
             transform.LookAt(finish);
             //transform.position = Vector3.MoveTowards(transform.position, finish, 40 * Time.fixedDeltaTime);
             float distance = Vector3.Distance(finish, transform.position);
