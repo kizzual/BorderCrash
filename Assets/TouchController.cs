@@ -28,5 +28,6 @@ public class TouchController : MonoBehaviour
         {
             moveDirection = 2;
         }
+
     }
 }

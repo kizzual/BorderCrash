@@ -18,10 +18,10 @@ public class Hedgehog : MonoBehaviour
             }
             if (degreeOfStrength < 10)
             {
-                car.speed -= car.speed * degreeOfStrength / 10;
+                car.speed -= (car.speed * degreeOfStrength / 10) * 1000 / car.mass;
                 gameObject.SetActive(false);
             }
-            else
+            if (degreeOfStrength == 10)
             {
                 car.isCarDestroyed = true;
             }

@@ -90,7 +90,6 @@ public class Car : MonoBehaviour
         Vector3 finish = new Vector3(0, 0, 500);
         if (goToFinish)
         {
-            Debug.Log("finish");
             transform.LookAt(finish);
             //transform.position = Vector3.MoveTowards(transform.position, finish, 40 * Time.fixedDeltaTime);
             float distance = Vector3.Distance(finish, transform.position);

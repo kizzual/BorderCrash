@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Puddle : MonoBehaviour
 {
-    [Range(0, 9)][SerializeField] private float speedDecrease;
+    [Range(0, 9)][SerializeField] private int speedDecrease;
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent(out Car car))
         {
-            car.speed -= car.speed * speedDecrease / 10;
+            car.speed -= (car.speed * speedDecrease / 10) * 1000 / car.mass; ;
         }
     }
 }
