@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class Car : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public class Car : MonoBehaviour
     public ParticleSystem[] particleDeath;
     public ParticleSystem[] particleDust;
     public bool goToFinish;
+    public CinemachineVirtualCamera virtualCamera;
+    public Transform startPoint;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -83,7 +86,9 @@ public class Car : MonoBehaviour
             {
                 particle.Stop();
             }
+            StartCoroutine(en());
         }
+        
     }
     private void GoToFinish()
     {
@@ -102,8 +107,13 @@ public class Car : MonoBehaviour
                 {
                     particle.Stop();
                 }
-
             }         
         }
+    }
+    IEnumerator en()
+    {
+        yield return new WaitForSeconds(1.8f);
+        virtualCamera.Follow = startPoint;
+        gameObject.SetActive(false);
     }
 }
